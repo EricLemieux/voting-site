@@ -1,3 +1,14 @@
-<button hx-post="/button" hx-swap="outerHTML">
+<button
+  hx-post="/partials/button"
+  hx-swap="outerHTML"
+  class="
+    rounded-md
+    p-2
+    bg-green-500
+    hover:bg-green-600
+    text-white
+  "
+>
   I am a button, I have been clicked {{ click_count }} times
 </button>
+

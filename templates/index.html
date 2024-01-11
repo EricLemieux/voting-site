@@ -1,12 +1,32 @@
 <html>
 <head>
-		<script src="https://unpkg.com/htmx.org@1.9.10"></script>
-	</head>
+    <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
 
-<body>
-<div>
-<h2>Foo</h2>
-			<button hx-post="/button" hx-swap="outerHTML">I have never been clicked</button>
-</div>
-	</body>
+<body class="bg-blue-400">
+    <div class="container mx-auto bg-white p-5 m-5 rounded-md">
+        <main class="mx-auto w-full max-w-5xl">
+            <h1 class="
+                    text-center
+                    pt-10
+                    pb-5
+                    text-5xl
+                    font-medium
+                "
+            >
+                    Some title
+            </h1>
+                <form
+                    hx-post="/partials/timer"
+                    class="grid grid-flow-row-dense grid-cols-3"
+                >
+                    <label for="duration" class="flex items-center p-4 capitalize text-xl bg-gray-100">Duration (minutes)</label>
+                    <input type="number" name="duration" class="col-span-2 p-4 text-lg bg-gray-100"/>
+                    <button type="submit">Submit</button>
+                </form>
+            {{ button|safe }}
+        </main>
+    </div>
+</body>
 </html>

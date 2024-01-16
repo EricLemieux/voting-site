@@ -2,6 +2,14 @@
 <head>
     <script src="https://unpkg.com/htmx.org@1.9.10"></script>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+
+    <script>
+        window.addEventListener('load', () => {
+            var element = document.querySelector("#sort");
+            var sortable = Sortable.create(element);
+        });
+    </script>
 </head>
 
 <body class="bg-blue-400">
@@ -15,17 +23,30 @@
                     font-medium
                 "
             >
-                    Some title
+                    Submit Your Vote
             </h1>
                 <form
-                    hx-post="/partials/timer"
-                    class="grid grid-flow-row-dense grid-cols-3"
+                    hx-post="/save-vote"
+                    class="flex flex-col"
                 >
-                    <label for="duration" class="flex items-center p-4 capitalize text-xl bg-gray-100">Duration (minutes)</label>
-                    <input type="number" name="duration" class="col-span-2 p-4 text-lg bg-gray-100"/>
-                    <button type="submit">Submit</button>
+                    <div id="sort">
+                        {% for option in vote_options %}
+                            <div class="bg-gray-200 p-2 my-2 rounded-md">
+                                <input type="hidden" name="{{ option.id }}" value="{{ option.id }}"/>
+                                {{ option.display }}
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <button type="submit"
+                        class="col-start-3
+                            mt-4
+                            rounded-md
+                            p-2
+                            bg-green-500
+                            hover:bg-green-600
+                            text-white
+                        ">Submit</button>
                 </form>
-            {{ button|safe }}
         </main>
     </div>
 </body>
